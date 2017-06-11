@@ -1,0 +1,38 @@
+allprojects {
+    group = 'com.liulangf'
+    version = '0.1-SNAPSHOT'
+}
+
+subprojects {
+    apply plugin: 'groovy'
+
+    repositories {
+        mavenLocal()
+        jcenter()
+    }
+
+    tasks.withType(JavaCompile) {  
+        options.encoding = "UTF-8"  
+    }
+
+    tasks.withType(Test) {
+       systemProperty "file.encoding", "UTF-8"
+    }
+
+    tasks.withType(GroovyCompile) {
+       options.encoding = "UTF-8"
+    }
+
+    dependencies {
+        compile 'org.slf4j:slf4j-api:1.7.22'
+        compile 'ch.qos.logback:logback-core:1.2.2'
+        compile 'ch.qos.logback:logback-classic:1.2.2'
+        compile 'org.codehaus.groovy:groovy-all:2.4.11'
+
+        testCompile 'junit:junit:4.12'
+        testCompile 'org.spockframework:spock-core:1.1-groovy-2.4'
+    }
+}
+
+
+
